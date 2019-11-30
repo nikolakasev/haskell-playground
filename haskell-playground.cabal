@@ -1,0 +1,61 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 08e738123516112764defed9672c391e0972b784cda4a0a698ce1a845cf47d96
+
+name:           haskell-playground
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/haskell-playground#readme>
+homepage:       https://github.com/nikolakasev/haskell-playground#readme
+bug-reports:    https://github.com/nikolakasev/haskell-playground/issues
+author:         Nikola Kasev
+maintainer:     Nikola Kasev
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/nikolakasev/haskell-playground
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_haskell_playground
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable haskell-playground-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_playground
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haskell-playground
+  default-language: Haskell2010
+
+test-suite haskell-playground-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskell_playground
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haskell-playground
+  default-language: Haskell2010
