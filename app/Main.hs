@@ -12,7 +12,7 @@ opCode :: [Int]
 opCode = map (read :: String -> Int) $ splitOn "," input
 
 tweakedCode :: [Int]
-tweakedCode = [head opCode] ++ [12, 2] ++ (drop 3 opCode)
+tweakedCode = [head opCode] ++ [12, 2] ++ drop 3 opCode
 
 main :: IO ()
 -- <| in Elm
