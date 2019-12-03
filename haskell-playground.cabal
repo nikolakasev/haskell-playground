@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 08e738123516112764defed9672c391e0972b784cda4a0a698ce1a845cf47d96
+-- hash: c594c716ad5054586c1462f74ab5cc4585cdecbb26aaf13ccc165d882bdbb275
 
 name:           haskell-playground
 version:        0.1.0.0
@@ -33,6 +33,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , split
   default-language: Haskell2010
 
 executable haskell-playground-exe
@@ -45,6 +46,7 @@ executable haskell-playground-exe
   build-depends:
       base >=4.7 && <5
     , haskell-playground
+    , split
   default-language: Haskell2010
 
 test-suite haskell-playground-test
@@ -58,4 +60,5 @@ test-suite haskell-playground-test
   build-depends:
       base >=4.7 && <5
     , haskell-playground
+    , split
   default-language: Haskell2010
