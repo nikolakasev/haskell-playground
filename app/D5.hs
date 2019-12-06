@@ -46,6 +46,10 @@ data Operation
   | Multiply Operand Operand Int
   | Input Int
   | Output Int
+  | JumpIfTrue Operand Operand
+  | JumpIfFalse Operand Operand
+  | LessThan Operand Operand Int
+  | Equals Operand Operand Int
   | Halt
   deriving (Eq, Show)
 
@@ -103,6 +107,10 @@ offsetFromOperation Add {}      = 4
 offsetFromOperation Multiply {} = 4
 offsetFromOperation Input {}    = 2
 offsetFromOperation Output {}   = 2
+-- TODO refactor to support lookup
+--offsetFromOperation (JumpIfTrue first second) =
+offsetFromOperation LessThan {} = 4
+offsetFromOperation Equals {} = 4
 offsetFromOperation Halt        = 0
 
 interpreter :: Operation -> [Int] -> IO [Int]
@@ -123,6 +131,26 @@ interpreter op opCode =
       a <- getAtIndex from opCode
       print a
       return opCode
+    -- jumping doesn't modify the Intcode, it only affects the instruction pointer
+    JumpIfTrue {} -> return opCode
+    JumpIfFalse {} -> return opCode
+    LessThan first second to -> do
+      a <- getOperandValue first opCode
+      b <- getOperandValue second opCode
+      let value =
+            if a < b
+              then 1
+              else 0
+      setAtIndex to value opCode
+    Equals first second to -> do
+      a <- getOperandValue first opCode
+      b <- getOperandValue second opCode
+      let value =
+      -- TODO the only difference with LessThan is the function `==` instead of `<`, how to refactor?
+            if a == b
+              then 1
+              else 0
+      setAtIndex to value opCode
     Halt -> return opCode
 
 getAtIndex :: Int -> [a] -> IO a
