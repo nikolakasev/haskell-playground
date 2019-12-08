@@ -49,6 +49,7 @@ top' offSet opCode = do
     -- + and - are functions
       realOp <-
         if op == 1
+          -- surround an infix function with parentheses makes it an prefix function
           then Just (+)
           else Just (*)
     -- transforming to a prefix notation
